@@ -509,9 +509,12 @@ def Genre_List(params):
 
     post = urllib.urlencode(values)
     html = get_HTML(url, post)
+    #!!!
+    print html
+
     soup = BeautifulSoup(html, fromEncoding="utf-8")
 
-    for g in soup.find('ul', {'class':'subcat'}).findAll('a'):
+    for g in soup.find('ul', {'class':'subcat clearfix'}).findAll('a'):
         for rec in soup.find('select', {'class':'rating'}).findAll('option'):
             if g.text == rec.text.replace('&nbsp;', ''):
                 i = xbmcgui.ListItem(g.text.encode('utf-8'), iconImage=icon, thumbnailImage=icon)
